@@ -52,6 +52,7 @@ INSTALLED_APPS = (
 
     'farmdata',
     'farmdata.core',
+    'farmdata.farm_admin',
     'farmdata.harvest',
 )
 

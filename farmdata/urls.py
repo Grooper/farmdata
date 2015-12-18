@@ -7,6 +7,7 @@ from rest_framework.routers import DefaultRouter
 
 from farmdata.core.auth.jwt import JWTLoginView, JWTSignUpView
 from farmdata.core.views import UserViewSet, FarmViewSet, CropViewSet, UnitViewSet, UnitConversionViewSet, FieldViewSet
+from farmdata.farm_admin.views import ConfigurationViewSet
 from farmdata.harvest.views import HarvestViewSet
 
 # Django REST framework API routing
@@ -20,7 +21,20 @@ router.register(r'units', UnitViewSet)
 router.register(r'unit-conversions', UnitConversionViewSet)
 router.register(r'fields', FieldViewSet)
 
+# Harvest
 router.register(r'harvests', HarvestViewSet)
+
+# Seed
+
+# Soil
+
+# Comments
+
+# Labor
+
+# Admin
+router.register(r'configurations', ConfigurationViewSet)
+
 
 # Construct URLs
 urlpatterns = patterns(
