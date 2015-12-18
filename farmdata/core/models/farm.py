@@ -2,6 +2,8 @@ from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import Group, GroupManager
 
+from farmdata.farm_admin.models import Configuration
+
 from .membership import Membership
 
 class FarmManager(GroupManager):
@@ -11,19 +13,25 @@ class FarmManager(GroupManager):
     """
     def create(self, *args, **kwargs):
         # Create new Farm
-        group = self.model(
+        farm = self.model(
             *args,
             **kwargs
         )
 
         # Save to database
-        group.save()
+        farm.save()
 
         # Create Membership relation between new Farm and Farm Owner
-        group.add_member(group.owner)
+        farm.add_member(farm.owner)
+
+        # Create Configuration Object for this farm
+        configuration_data = {
+            'farm': farm,
+        }
+        Configuration.objects.create(**configuration_data)
 
         # Return newly created object
-        return group
+        return farm
 
 
 class Farm(Group):
