@@ -6,6 +6,7 @@ from farmdata.farm_admin.models import Configuration
 
 from .membership import Membership
 
+
 class FarmManager(GroupManager):
     """
     Farm Manager
@@ -41,6 +42,8 @@ class Farm(Group):
     https://docs.djangoproject.com/en/1.8/ref/contrib/auth/#django.contrib.auth.models.Group
     """
     location = models.CharField(blank=True, null=True, max_length=255)
+    email = models.EmailField(blank=True, null=True)
+    signature = models.TextField(blank=True, null=True)
 
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='owned_groups')
     members = models.ManyToManyField('core.User', through='core.Membership', through_fields=('farm', 'user'), related_name='farms')

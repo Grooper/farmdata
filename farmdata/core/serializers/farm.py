@@ -13,6 +13,8 @@ class FarmSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'name',
+            'email',
+            'signature',
             'location',
             'owner',
         )
